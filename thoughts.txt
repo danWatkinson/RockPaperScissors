@@ -3,3 +3,12 @@
    choose whether to play player/computer or computer/computer each time
 
 2. 'Doesn't necessarily need a flashy GUI' -> commandline (minimum viable product...)
+
+Test steps for first acceptance criteria:
+1. player can select rock, paper or scissors
+2. computer randomly selects one of rock, paper or scissors
+3. determine winner by applying rules
+    rock > scissors
+    scissors > paper
+    paper > rock
+4. announce winner
