@@ -1,5 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.stubbing.OngoingStubbing;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class RockPaperScissorsGameTest {
 
     @Test
     public void playerCanSelectRock() throws IOException {
-        when(mockSystemIn.readLine()).thenReturn("Rock");
+        prepareToChoose("Rock");
 
         game.start();
 
@@ -38,7 +39,7 @@ public class RockPaperScissorsGameTest {
 
     @Test
     public void playerCanSelectPaper() throws IOException {
-        when(mockSystemIn.readLine()).thenReturn("Paper");
+        prepareToChoose("Paper");
 
         game.start();
 
@@ -47,10 +48,14 @@ public class RockPaperScissorsGameTest {
 
     @Test
     public void playerCanSelectScissors() throws IOException {
-        when(mockSystemIn.readLine()).thenReturn("Scissors");
+        prepareToChoose("Scissors");
 
         game.start();
 
         verify(mockConsole).println("You selected Scissors");
+    }
+
+    private void prepareToChoose(final String choice) throws IOException {
+        when(mockSystemIn.readLine()).thenReturn(choice);
     }
 }
