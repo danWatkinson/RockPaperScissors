@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.stubbing.OngoingStubbing;
-import player.Player;
+import player.ComputerPlayer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -112,7 +112,7 @@ public class RockPaperScissorsGameTest {
     public void oncePlayerHasSelectedTheComputerPlayerMakesASelection() throws IOException {
         prepareToChoose("Rock");
 
-        Player mockComputerPlayer = mock(Player.class);
+        ComputerPlayer mockComputerPlayer = mock(ComputerPlayer.class);
         game.setPlayer2(mockComputerPlayer);
         game.start();
 

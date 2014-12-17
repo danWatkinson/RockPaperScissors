@@ -1,9 +1,7 @@
 package player;
 
-import selection.*;
+import selection.Selection;
 
-public class Player {
-    public Selection makeSelection() {
-        return new Rock();
-    }
+public interface Player {
+    public Selection makeSelection();
 }

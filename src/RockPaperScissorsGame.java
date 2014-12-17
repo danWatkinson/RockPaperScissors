@@ -54,8 +54,4 @@ public class RockPaperScissorsGame {
     public void setPlayer2(final Player player2) {
         this.player2 = player2;
     }
-
-    public Player getPlayer2() {
-        return player2;
-    }
 }
