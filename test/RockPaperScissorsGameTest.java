@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.stubbing.OngoingStubbing;
 import player.ComputerPlayer;
+import player.HumanPlayer;
+import player.Player;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,6 +16,9 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 public class RockPaperScissorsGameTest {
+
+    Player humanPlayer;
+    Player mockComputerPlayer;
 
     PrintStream mockConsole;
     BufferedReader mockSystemIn;
@@ -25,7 +30,9 @@ public class RockPaperScissorsGameTest {
         mockConsole = mock(PrintStream.class);
         mockSystemIn = mock(BufferedReader.class);
 
-        game = new RockPaperScissorsGame(mockSystemIn, mockConsole);
+        humanPlayer = new HumanPlayer(mockSystemIn, mockConsole);
+        mockComputerPlayer = mock(ComputerPlayer.class);
+        game = new RockPaperScissorsGame(humanPlayer, mockComputerPlayer, mockConsole);
     }
 
     @Test
@@ -112,8 +119,6 @@ public class RockPaperScissorsGameTest {
     public void oncePlayerHasSelectedTheComputerPlayerMakesASelection() throws IOException {
         prepareToChoose("Rock");
 
-        ComputerPlayer mockComputerPlayer = mock(ComputerPlayer.class);
-        game.setPlayer2(mockComputerPlayer);
         game.start();
 
         verify(mockComputerPlayer).makeSelection();

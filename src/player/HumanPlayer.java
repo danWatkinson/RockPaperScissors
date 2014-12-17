@@ -34,5 +34,6 @@ public class HumanPlayer implements Player {
                 throw new RuntimeException("Failed to read input.", e);
             }
         }
+        out.println("You selected " + selection);
         return selection;
     }}
