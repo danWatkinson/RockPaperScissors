@@ -18,6 +18,7 @@ public class RockPaperScissorsGame {
     }
 
     public void start() {
+        out.println("Please select 'Rock', 'Paper', or 'Scissors'");
         try {
             out.println("You selected " + in.readLine());
         } catch (IOException e) {

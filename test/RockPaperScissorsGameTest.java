@@ -25,6 +25,15 @@ public class RockPaperScissorsGameTest {
     }
 
     @Test
+    public void playerIsPromptedToSelectRockPaperOrScissors() throws IOException {
+        prepareToChoose("anything, but if we don't give it some input our test will hang forever waiting for some so lets give it some...");
+
+        game.start();
+
+        expectOutput("Please select 'Rock', 'Paper', or 'Scissors'");
+    }
+
+    @Test
     public void playerCanSelectRock() throws IOException {
         prepareToChoose("Rock");
 
