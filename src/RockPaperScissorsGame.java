@@ -27,13 +27,16 @@ public class RockPaperScissorsGame {
     }
 
     public void start() {
-        Selection player1Selection = player1.makeSelection();
-        Selection player2Selection = player2.makeSelection();
-        player1.informOfOpponentsSelection(player2Selection);
+        Result result = Result.DRAW;
+        while(result == Result.DRAW) {
+            Selection player1Selection = player1.makeSelection();
+            Selection player2Selection = player2.makeSelection();
+            player1.informOfOpponentsSelection(player2Selection);
 
-        Result result = player1Selection.resolveAgainst(player2Selection);
+            result = player1Selection.resolveAgainst(player2Selection);
 
-        player1.informOfResult(result);
+            player1.informOfResult(result);
+        }
     }
 
 }

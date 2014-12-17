@@ -7,6 +7,7 @@ import org.mockito.stubbing.OngoingStubbing;
 import player.ComputerPlayer;
 import player.HumanPlayer;
 import player.Player;
+import selection.Selection;
 import selection.SelectionBuilder;
 
 import java.io.BufferedReader;
@@ -62,7 +63,7 @@ public class RockPaperScissorsGameTest {
     @Test
     public void playerCanSelectPaper() throws IOException {
         prepareToChoose("Paper");
-        computerChooses("Paper");
+        computerChooses("Scissors");
 
         game.start();
 
@@ -206,6 +207,25 @@ public class RockPaperScissorsGameTest {
         );
     }
 
+    @Test
+    public void tiesAreReplayed() throws IOException {
+        prepareToChoose("Rock", "Rock");
+        computerChooses("Rock", "Scissors");
+
+        game.start();
+
+        expectOutput(
+                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "You selected Rock",
+                "The computer selected Rock",
+                "draw",
+                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "You selected Rock",
+                "The computer selected Scissors",
+                "You win!"
+        );
+    }
+
     private void prepareToChoose(final String... choices) throws IOException {
         OngoingStubbing<String> whenInputRead = when(mockSystemIn.readLine());
         for(String choice : choices) {
@@ -221,7 +241,11 @@ public class RockPaperScissorsGameTest {
         }
     }
 
-    private void computerChooses(String computerSelection) {
-        when(mockComputerPlayer.makeSelection()).thenReturn(new SelectionBuilder().parse(computerSelection));
+    private void computerChooses(String... computerSelections) {
+        OngoingStubbing<Selection> whenInputRead = when(mockComputerPlayer.makeSelection());
+        for(String computerSelection : computerSelections) {
+            whenInputRead = whenInputRead.thenReturn(new SelectionBuilder().parse(computerSelection));
+        }
+
     }
 }
