@@ -1,7 +1,6 @@
 import player.ComputerPlayer;
 import player.HumanPlayer;
 import player.Player;
-import result.Result;
 import selection.Selection;
 
 import java.io.BufferedReader;
@@ -24,16 +23,29 @@ public class RockPaperScissorsGame {
     }
 
     public void start() {
-        Result result = Result.DRAW;
-        while(result == Result.DRAW) {
+        Player winner = null;
+        while(winner == null) {
             Selection player1Selection = player1.makeSelection();
             Selection player2Selection = player2.makeSelection();
             player1.informOfOpponentsSelection(player2Selection);
 
-            result = player1Selection.resolveAgainst(player2Selection);
+            winner = calculateWinner(player1, player1Selection, player2, player2Selection);
 
-            player1.informOfResult(result);
+            player1.informOfResult(winner);
         }
+    }
+
+    private Player calculateWinner(final Player player1, final Selection player1Selection, final Player player2, final Selection player2Selection) {
+        if (player1Selection == player2Selection) {
+            return null;
+        }
+
+        if (player1Selection == Selection.Rock && player2Selection == Selection.Paper
+            || player1Selection == Selection.Paper && player2Selection == Selection.Scissors
+            || player1Selection == Selection.Scissors && player2Selection == Selection.Rock) {
+            return player2;
+        }
+        return player1;
     }
 
 }

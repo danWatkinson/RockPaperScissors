@@ -1,12 +1,11 @@
 package player;
 
-import result.Result;
 import selection.*;
 
 public class ComputerPlayer implements Player {
     @Override
     public Selection makeSelection() {
-        return new Rock();
+        return Selection.Rock;
     }
 
     @Override
@@ -15,7 +14,7 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public void informOfResult(final Result winner) {
+    public void informOfResult(final Player winner) {
         //dummy
     }
 }

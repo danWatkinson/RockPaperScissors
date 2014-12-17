@@ -1,7 +1,5 @@
 package player;
 
-import result.Result;
-import selection.InvalidSelection;
 import selection.Selection;
 import selection.SelectionBuilder;
 
@@ -23,12 +21,12 @@ public class HumanPlayer implements Player {
     public Selection makeSelection() {
         out.println("Please select 'Rock', 'Paper', or 'Scissors'");
         SelectionBuilder selectionBuilder = new SelectionBuilder();
-        Selection selection = new InvalidSelection();
+        Selection selection = Selection.Other;
 
-        while (!selection.isValid()) {
+        while (selection == Selection.Other) {
             try {
                 selection = selectionBuilder.parse(in.readLine());
-                if (!selection.isValid()) {
+                if (selection == Selection.Other) {
                     out.println("Sorry, I didn't recognise that. Please try again: Rock Paper or Scissors");
                 }
             } catch (IOException e) {
@@ -45,20 +43,13 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public void informOfResult(final Result result) {
-        switch (result) {
-            case WIN:
-                out.println("You win!");
-                break;
-            case LOOSE:
-                out.println("You loose!");
-                break;
-            case DRAW:
-                out.println("draw");
-                break;
-            case ERROR:
-                out.println("goodness knows");
-                break;
+    public void informOfResult(final Player winner) {
+        if (winner == null) {
+            out.println("draw");
+        } else if (winner.equals(this)) {
+            out.println("You win!");
+        } else {
+            out.println("You loose!");
         }
     }
 }
