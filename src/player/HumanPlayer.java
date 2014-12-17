@@ -36,4 +36,10 @@ public class HumanPlayer implements Player {
         }
         out.println("You selected " + selection);
         return selection;
-    }}
+    }
+
+    @Override
+    public void informOfOpponentsSelection(final Selection opponentsSelection) {
+        out.println("The computer selected " + opponentsSelection);
+    }
+}

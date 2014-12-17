@@ -7,4 +7,9 @@ public class ComputerPlayer implements Player {
     public Selection makeSelection() {
         return new Rock();
     }
+
+    @Override
+    public void informOfOpponentsSelection(final Selection opponentsSelection) {
+        //dummy
+    }
 }

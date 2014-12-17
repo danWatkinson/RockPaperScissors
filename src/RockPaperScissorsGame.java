@@ -1,6 +1,7 @@
 import player.ComputerPlayer;
 import player.HumanPlayer;
 import player.Player;
+import selection.Selection;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -26,7 +27,8 @@ public class RockPaperScissorsGame {
 
     public void start() {
         player1.makeSelection();
-        player2.makeSelection();
+        Selection player2Selection = player2.makeSelection();
+        player1.informOfOpponentsSelection(player2Selection);
     }
 
 }

@@ -7,6 +7,7 @@ import org.mockito.stubbing.OngoingStubbing;
 import player.ComputerPlayer;
 import player.HumanPlayer;
 import player.Player;
+import selection.Paper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -122,6 +123,20 @@ public class RockPaperScissorsGameTest {
         game.start();
 
         verify(mockComputerPlayer).makeSelection();
+    }
+
+    @Test
+    public void theHumanPlayerIsToldAboutTheComputersSelection() throws IOException {
+        prepareToChoose("Rock");
+        when(mockComputerPlayer.makeSelection()).thenReturn(new Paper());
+
+        game.start();
+
+        expectOutput(
+                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "You selected Rock",
+                "The computer selected Paper"
+        );
     }
 
     private void prepareToChoose(final String... choices) throws IOException {
