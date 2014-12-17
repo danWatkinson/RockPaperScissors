@@ -1,0 +1,5 @@
+1. if i were actually taking this story from someone, I'd ask for clarity on 'Can I play a different game each time?'
+ - I'm going to assume this means that each game has a different outcome (ie testing for randomness) rather than that you get to
+   choose whether to play player/computer or computer/computer each time
+
+2. 'Doesn't necessarily need a flashy GUI' -> commandline (minimum viable product...)
