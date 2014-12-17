@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 
 /**
@@ -14,6 +15,10 @@ public class RockPaperScissorsGame {
     }
 
     public void start() {
-        out.println("You selected Rock");
+        try {
+            out.println("You selected " + in.readLine());
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to read input.", e);
+        }
     }
 }

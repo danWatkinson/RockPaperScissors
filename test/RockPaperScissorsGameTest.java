@@ -35,4 +35,13 @@ public class RockPaperScissorsGameTest {
 
         verify(mockConsole).println("You selected Rock");
     }
+
+    @Test
+    public void playerCanSelectPaper() throws IOException {
+        when(mockSystemIn.readLine()).thenReturn("Paper");
+
+        game.start();
+
+        verify(mockConsole).println("You selected Paper");
+    }
 }
