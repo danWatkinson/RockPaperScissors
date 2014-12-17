@@ -34,7 +34,7 @@ public class RockPaperScissorsGameTest {
 
         humanPlayer = new HumanPlayer(mockSystemIn, mockConsole);
         mockComputerPlayer = mock(ComputerPlayer.class);
-        game = new RockPaperScissorsGame(humanPlayer, mockComputerPlayer, mockConsole);
+        game = new RockPaperScissorsGame(humanPlayer, mockComputerPlayer);
     }
 
     @Test
