@@ -1,5 +1,6 @@
 package player;
 
+import result.Result;
 import selection.*;
 
 public class ComputerPlayer implements Player {
@@ -14,7 +15,7 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public void informOfResult(final boolean winner) {
+    public void informOfResult(final Result winner) {
         //dummy
     }
 }

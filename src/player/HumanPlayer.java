@@ -1,5 +1,6 @@
 package player;
 
+import result.Result;
 import selection.InvalidSelection;
 import selection.Selection;
 import selection.SelectionBuilder;
@@ -44,11 +45,20 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public void informOfResult(final boolean winner) {
-        if (winner) {
-            out.println("You win!");
-        } else {
-            out.println("You loose!");
+    public void informOfResult(final Result result) {
+        switch (result) {
+            case WIN:
+                out.println("You win!");
+                break;
+            case LOOSE:
+                out.println("You loose!");
+                break;
+            case DRAW:
+                out.println("draw");
+                break;
+            case ERROR:
+                out.println("goodness knows");
+                break;
         }
     }
 }

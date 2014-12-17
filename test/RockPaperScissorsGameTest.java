@@ -7,9 +7,7 @@ import org.mockito.stubbing.OngoingStubbing;
 import player.ComputerPlayer;
 import player.HumanPlayer;
 import player.Player;
-import selection.Paper;
-import selection.Rock;
-import selection.Scissors;
+import selection.SelectionBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,6 +39,7 @@ public class RockPaperScissorsGameTest {
     @Test
     public void playerIsPromptedToSelectRockPaperOrScissors() throws IOException {
         prepareToChoose("Rock");
+        computerChooses("Paper");
 
         game.start();
 
@@ -50,6 +49,7 @@ public class RockPaperScissorsGameTest {
     @Test
     public void playerCanSelectRock() throws IOException {
         prepareToChoose("Rock");
+        computerChooses("Paper");
 
         game.start();
 
@@ -62,6 +62,7 @@ public class RockPaperScissorsGameTest {
     @Test
     public void playerCanSelectPaper() throws IOException {
         prepareToChoose("Paper");
+        computerChooses("Paper");
 
         game.start();
 
@@ -74,6 +75,7 @@ public class RockPaperScissorsGameTest {
     @Test
     public void playerCanSelectScissors() throws IOException {
         prepareToChoose("Scissors");
+        computerChooses("Paper");
 
         game.start();
 
@@ -89,6 +91,7 @@ public class RockPaperScissorsGameTest {
                 "Two-handed sword",
                 "Rock"
         );
+        computerChooses("Paper");
 
         game.start();
 
@@ -106,6 +109,7 @@ public class RockPaperScissorsGameTest {
                 "One of those amazing rotary machine guns, like the one Blaine used in Predator",
                 "Rock"
         );
+        computerChooses("Paper");
 
         game.start();
 
@@ -121,6 +125,7 @@ public class RockPaperScissorsGameTest {
     @Test
     public void oncePlayerHasSelectedTheComputerPlayerMakesASelection() throws IOException {
         prepareToChoose("Rock");
+        computerChooses("Paper");
 
         game.start();
 
@@ -130,7 +135,7 @@ public class RockPaperScissorsGameTest {
     @Test
     public void theHumanPlayerIsToldAboutTheComputersSelection() throws IOException {
         prepareToChoose("Rock");
-        when(mockComputerPlayer.makeSelection()).thenReturn(new Paper());
+        computerChooses("Paper");
 
         game.start();
 
@@ -144,7 +149,7 @@ public class RockPaperScissorsGameTest {
     @Test
     public void rockBeatsScissors() throws IOException {
         prepareToChoose("Rock");
-        when(mockComputerPlayer.makeSelection()).thenReturn(new Scissors());
+        computerChooses("Scissors");
 
         game.start();
 
@@ -159,7 +164,7 @@ public class RockPaperScissorsGameTest {
     @Test
     public void scissorsLooseToRock() throws IOException {
         prepareToChoose("Scissors");
-        when(mockComputerPlayer.makeSelection()).thenReturn(new Rock());
+        computerChooses("Rock");
 
         game.start();
 
@@ -167,6 +172,36 @@ public class RockPaperScissorsGameTest {
                 "Please select 'Rock', 'Paper', or 'Scissors'",
                 "You selected Scissors",
                 "The computer selected Rock",
+                "You loose!"
+        );
+    }
+
+    @Test
+    public void scissorsBeatPaper() throws IOException {
+        prepareToChoose("Scissors");
+        computerChooses("Paper");
+
+        game.start();
+
+        expectOutput(
+                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "You selected Scissors",
+                "The computer selected Paper",
+                "You win!"
+        );
+    }
+
+    @Test
+    public void paperBeatsRock() throws IOException {
+        prepareToChoose("Rock");
+        computerChooses("Paper");
+
+        game.start();
+
+        expectOutput(
+                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "You selected Rock",
+                "The computer selected Paper",
                 "You loose!"
         );
     }
@@ -186,4 +221,7 @@ public class RockPaperScissorsGameTest {
         }
     }
 
+    private void computerChooses(String computerSelection) {
+        when(mockComputerPlayer.makeSelection()).thenReturn(new SelectionBuilder().parse(computerSelection));
+    }
 }

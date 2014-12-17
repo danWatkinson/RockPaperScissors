@@ -1,6 +1,7 @@
 import player.ComputerPlayer;
 import player.HumanPlayer;
 import player.Player;
+import result.Result;
 import selection.Selection;
 
 import java.io.BufferedReader;
@@ -29,8 +30,10 @@ public class RockPaperScissorsGame {
         Selection player1Selection = player1.makeSelection();
         Selection player2Selection = player2.makeSelection();
         player1.informOfOpponentsSelection(player2Selection);
-        boolean winner = "Rock".equals(player1Selection.toString());
-        player1.informOfResult(winner);
+
+        Result result = player1Selection.resolveAgainst(player2Selection);
+
+        player1.informOfResult(result);
     }
 
 }
