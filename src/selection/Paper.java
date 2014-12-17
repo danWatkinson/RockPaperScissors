@@ -1,6 +1,6 @@
 package selection;
 
-class Paper implements Selection {
+public class Paper implements Selection {
     @Override
     public boolean isValid() {
         return true;

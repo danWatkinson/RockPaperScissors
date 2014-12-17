@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.stubbing.OngoingStubbing;
+import player.Player;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -107,6 +108,17 @@ public class RockPaperScissorsGameTest {
         );
     }
 
+    @Test
+    public void oncePlayerHasSelectedTheComputerPlayerMakesASelection() throws IOException {
+        prepareToChoose("Rock");
+
+        Player mockComputerPlayer = mock(Player.class);
+        game.setPlayer2(mockComputerPlayer);
+        game.start();
+
+        verify(mockComputerPlayer).makeSelection();
+    }
+
     private void prepareToChoose(final String... choices) throws IOException {
         OngoingStubbing<String> whenInputRead = when(mockSystemIn.readLine());
         for(String choice : choices) {
@@ -121,4 +133,5 @@ public class RockPaperScissorsGameTest {
             inOrder.verify(mockConsole, times(expectation.getNumberOfTimes())).println(expectation.getExpectation());
         }
     }
+
 }

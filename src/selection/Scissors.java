@@ -1,6 +1,6 @@
 package selection;
 
-class Scissors implements Selection {
+public class Scissors implements Selection {
     @Override
     public boolean isValid() {
         return true;

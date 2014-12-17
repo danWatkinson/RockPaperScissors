@@ -1,3 +1,4 @@
+import player.Player;
 import selection.InvalidSelection;
 import selection.Selection;
 import selection.SelectionBuilder;
@@ -10,6 +11,7 @@ import java.io.PrintStream;
 public class RockPaperScissorsGame {
     private final BufferedReader in;
     private final PrintStream out;
+    private Player player2;
 
     public static void main(String[] args) {
         new RockPaperScissorsGame(new BufferedReader(new InputStreamReader(System.in)), System.out)
@@ -24,6 +26,9 @@ public class RockPaperScissorsGame {
     public void start() {
         Selection playersSelection = getSelection();
         out.println("You selected " + playersSelection);
+        if (player2 != null) {
+            player2.makeSelection();
+        }
     }
 
     private Selection getSelection() { //TODO - this looks like something to pop out into another class, but I'm going to go ahead and
@@ -46,4 +51,11 @@ public class RockPaperScissorsGame {
         return selection;
     }
 
+    public void setPlayer2(final Player player2) {
+        this.player2 = player2;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
 }
