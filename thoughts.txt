@@ -29,3 +29,11 @@ of outputs I expect back".
 
 Be interesting to see how that stands up to the bit where I have to test randomness, but one step at a time...
 -------
+
+1. all tests in one class - refactor to get a clear set of unit-tests, should leave the acceptance tests nice and clear
+2. i was cheeky re-using the 'HumanPlayer' class to play the part of the observer... and I had to 'change the world' to do it - refactor all
+   the messages so they fit what I could readily do the way I wanted to refactor towards. That doesn't feel right; I can get away with it
+   because I invented the text anyway, but it feels a bit 'dirty' anyway.
+   Worth breaking out some kind of Observer interface?
+3. //TODO refactor the actual Game code; use the fact that we've got a list of things that we want to inform about each event, rather than paste together the bits that work...
+4. something in the back of my mind tells me that I don't need to have a 'builder' for my Selection enum, isn't there some cheap opposite of toString for enums?? google it..

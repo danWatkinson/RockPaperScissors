@@ -229,9 +229,6 @@ public class RockPaperScissorsGameTest {
 
     @Test
     public void iWantToObserveTwoComputerPlayersPlaying() {
-        // tests getting a bit blurred now; got to write new 'setup' which suggests this isn't in the right place
-        // very nearly shaken it into the right shape though so will push this through, then refactor until it's right..
-
         Player mockPlayer1 = mock(ComputerPlayer.class);
         when(mockPlayer1.makeSelection()).thenReturn(Selection.Rock);
         when(mockPlayer1.toString()).thenReturn("Computer Player 1");
