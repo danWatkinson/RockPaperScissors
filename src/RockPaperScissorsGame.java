@@ -26,7 +26,9 @@ public class RockPaperScissorsGame {
         out.println("You selected " + playersSelection);
     }
 
-    private Selection getSelection() {
+    private Selection getSelection() { //TODO - this looks like something to pop out into another class, but I'm going to go ahead and
+                                       // look at the next acceptance criteria and see where that takes me, right now it's just one
+                                       // 'slightly rogue' method
         out.println("Please select 'Rock', 'Paper', or 'Scissors'");
         SelectionBuilder selectionBuilder = new SelectionBuilder();
         Selection selection = new InvalidSelection();
