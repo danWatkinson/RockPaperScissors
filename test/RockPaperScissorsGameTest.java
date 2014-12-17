@@ -39,7 +39,10 @@ public class RockPaperScissorsGameTest {
 
         game.start();
 
-        expectOutput("You selected Rock");
+        expectOutput(
+                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "You selected Rock"
+        );
     }
 
     @Test
@@ -48,7 +51,10 @@ public class RockPaperScissorsGameTest {
 
         game.start();
 
-        expectOutput("You selected Paper");
+        expectOutput(
+                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "You selected Paper"
+        );
     }
 
     @Test
@@ -57,14 +63,31 @@ public class RockPaperScissorsGameTest {
 
         game.start();
 
-        expectOutput("You selected Scissors");
+        expectOutput(
+                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "You selected Scissors"
+        );
+    }
+
+    @Test
+    public void playerCantSelectAnythingOtherThanRockPaperOrScissors() throws IOException {
+        prepareToChoose("Two-handed sword");
+
+        game.start();
+
+        expectOutput(
+                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Sorry, I didn't recognise that. Please try again: Rock Paper or Scissors"
+        );
     }
 
     private void prepareToChoose(final String choice) throws IOException {
         when(mockSystemIn.readLine()).thenReturn(choice);
     }
 
-    private void expectOutput(final String expectedOutput) {
-        verify(mockConsole).println(expectedOutput);
+    private void expectOutput(final String... expectedOutput) {
+        for (String expectation: expectedOutput) {
+            verify(mockConsole).println(expectation);
+        }
     }
 }

@@ -20,7 +20,12 @@ public class RockPaperScissorsGame {
     public void start() {
         out.println("Please select 'Rock', 'Paper', or 'Scissors'");
         try {
-            out.println("You selected " + in.readLine());
+            String input = in.readLine();
+            if ("Rock".equals(input) || "Paper".equals(input) || "Scissors".equals(input)) {
+                out.println("You selected " + input);
+            } else {
+                out.println("Sorry, I didn't recognise that. Please try again: Rock Paper or Scissors");
+            }
         } catch (IOException e) {
             throw new RuntimeException("Failed to read input.", e);
         }
