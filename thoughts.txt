@@ -12,3 +12,20 @@ Test steps for first acceptance criteria:
     scissors > paper
     paper > rock
 4. announce winner
+
+
+-------
+Mocking out the input/output is my preferred way of dealing with commandline TDD but mockito/the nature of buffered streams puts you
+in a position where you kinda have to queue all your input and output up as in my current tests... i don't think it's too opaque so
+I'm not going to worry about it unless I have to, but the next option would break out a class responsible for UI that prompts for feedback
+and returns the input, then I could write the tests in a more user-like format :
+expect this prompt
+enter this text
+expect this feedback
+etc.
+
+On the other hand, I quite like the completely deterministic nature of saying "if i give you this stream of inputs, this is the stream
+of outputs I expect back".
+
+Be interesting to see how that stands up to the bit where I have to test randomness, but one step at a time...
+-------
