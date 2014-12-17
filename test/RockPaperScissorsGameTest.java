@@ -32,8 +32,9 @@ public class RockPaperScissorsGameTest {
         mockConsole = mock(PrintStream.class);
         mockSystemIn = mock(BufferedReader.class);
 
-        humanPlayer = new HumanPlayer(mockSystemIn, mockConsole);
+        humanPlayer = new HumanPlayer("Player 1", mockSystemIn, mockConsole);
         mockComputerPlayer = mock(ComputerPlayer.class);
+        when(mockComputerPlayer.toString()).thenReturn("Player 2");
         game = new RockPaperScissorsGame(humanPlayer, mockComputerPlayer);
     }
 
@@ -44,7 +45,7 @@ public class RockPaperScissorsGameTest {
 
         game.start();
 
-        expectOutput("Please select 'Rock', 'Paper', or 'Scissors'");
+        expectOutput("Player 1, please select 'Rock', 'Paper', or 'Scissors'");
     }
 
     @Test
@@ -55,7 +56,7 @@ public class RockPaperScissorsGameTest {
         game.start();
 
         expectOutput(
-                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Player 1, please select 'Rock', 'Paper', or 'Scissors'",
                 "You selected Rock"
         );
     }
@@ -68,7 +69,7 @@ public class RockPaperScissorsGameTest {
         game.start();
 
         expectOutput(
-                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Player 1, please select 'Rock', 'Paper', or 'Scissors'",
                 "You selected Paper"
         );
     }
@@ -81,7 +82,7 @@ public class RockPaperScissorsGameTest {
         game.start();
 
         expectOutput(
-                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Player 1, please select 'Rock', 'Paper', or 'Scissors'",
                 "You selected Scissors"
         );
     }
@@ -97,7 +98,7 @@ public class RockPaperScissorsGameTest {
         game.start();
 
         expectOutput(
-                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Player 1, please select 'Rock', 'Paper', or 'Scissors'",
                 "Sorry, I didn't recognise that. Please try again: Rock Paper or Scissors"
         );
     }
@@ -115,7 +116,7 @@ public class RockPaperScissorsGameTest {
         game.start();
 
         expectOutput(
-                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Player 1, please select 'Rock', 'Paper', or 'Scissors'",
                 "Sorry, I didn't recognise that. Please try again: Rock Paper or Scissors",
                 "Sorry, I didn't recognise that. Please try again: Rock Paper or Scissors",
                 "Sorry, I didn't recognise that. Please try again: Rock Paper or Scissors",
@@ -141,9 +142,9 @@ public class RockPaperScissorsGameTest {
         game.start();
 
         expectOutput(
-                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Player 1, please select 'Rock', 'Paper', or 'Scissors'",
                 "You selected Rock",
-                "The computer selected Paper"
+                "Player 2 selected Paper"
         );
     }
 
@@ -155,10 +156,10 @@ public class RockPaperScissorsGameTest {
         game.start();
 
         expectOutput(
-                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Player 1, please select 'Rock', 'Paper', or 'Scissors'",
                 "You selected Rock",
-                "The computer selected Scissors",
-                "You win!"
+                "Player 2 selected Scissors",
+                "Player 1 wins!"
         );
     }
 
@@ -170,10 +171,10 @@ public class RockPaperScissorsGameTest {
         game.start();
 
         expectOutput(
-                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Player 1, please select 'Rock', 'Paper', or 'Scissors'",
                 "You selected Scissors",
-                "The computer selected Rock",
-                "You loose!"
+                "Player 2 selected Rock",
+                "Player 2 wins!"
         );
     }
 
@@ -185,10 +186,10 @@ public class RockPaperScissorsGameTest {
         game.start();
 
         expectOutput(
-                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Player 1, please select 'Rock', 'Paper', or 'Scissors'",
                 "You selected Scissors",
-                "The computer selected Paper",
-                "You win!"
+                "Player 2 selected Paper",
+                "Player 1 wins!"
         );
     }
 
@@ -200,10 +201,10 @@ public class RockPaperScissorsGameTest {
         game.start();
 
         expectOutput(
-                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Player 1, please select 'Rock', 'Paper', or 'Scissors'",
                 "You selected Rock",
-                "The computer selected Paper",
-                "You loose!"
+                "Player 2 selected Paper",
+                "Player 2 wins!"
         );
     }
 
@@ -215,15 +216,42 @@ public class RockPaperScissorsGameTest {
         game.start();
 
         expectOutput(
-                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Player 1, please select 'Rock', 'Paper', or 'Scissors'",
                 "You selected Rock",
-                "The computer selected Rock",
+                "Player 2 selected Rock",
                 "draw",
-                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "Player 1, please select 'Rock', 'Paper', or 'Scissors'",
                 "You selected Rock",
-                "The computer selected Scissors",
-                "You win!"
+                "Player 2 selected Scissors",
+                "Player 1 wins!"
         );
+    }
+
+    @Test
+    public void iWantToObserveTwoComputerPlayersPlaying() {
+        // tests getting a bit blurred now; got to write new 'setup' which suggests this isn't in the right place
+        // very nearly shaken it into the right shape though so will push this through, then refactor until it's right..
+
+        Player mockPlayer1 = mock(ComputerPlayer.class);
+        when(mockPlayer1.makeSelection()).thenReturn(Selection.Rock);
+        when(mockPlayer1.toString()).thenReturn("Computer Player 1");
+
+        Player mockPlayer2 = mock(ComputerPlayer.class);
+        when(mockPlayer2.makeSelection()).thenReturn(Selection.Paper);
+        when(mockPlayer2.toString()).thenReturn("Computer Player 2");
+
+        Player observer = new HumanPlayer("Player 1", mockSystemIn, mockConsole);
+
+        game = new RockPaperScissorsGame(mockPlayer1, mockPlayer2, observer);
+
+        game.start();
+
+        expectOutput(
+                "Computer Player 1 selected Rock",
+                "Computer Player 2 selected Paper",
+                "Computer Player 2 wins!"
+        );
+
     }
 
     private void prepareToChoose(final String... choices) throws IOException {

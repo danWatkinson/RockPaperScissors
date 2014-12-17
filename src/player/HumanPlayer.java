@@ -9,17 +9,19 @@ import java.io.PrintStream;
 
 public class HumanPlayer implements Player {
 
+    private String name;
     private final BufferedReader in;
     private final PrintStream out;
 
-    public HumanPlayer(final BufferedReader in, final PrintStream out) {
+    public HumanPlayer(final String name, final BufferedReader in, final PrintStream out) {
+        this.name = name;
         this.in = in;
         this.out = out;
     }
 
     @Override
     public Selection makeSelection() {
-        out.println("Please select 'Rock', 'Paper', or 'Scissors'");
+        out.println(this.toString() + ", please select 'Rock', 'Paper', or 'Scissors'");
         SelectionBuilder selectionBuilder = new SelectionBuilder();
         Selection selection = Selection.Other;
 
@@ -38,18 +40,21 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public void informOfOpponentsSelection(final Selection opponentsSelection) {
-        out.println("The computer selected " + opponentsSelection);
+    public void informOfOpponentsSelection(final Player opponent, final Selection opponentsSelection) {
+        out.println(opponent + " selected " + opponentsSelection);
     }
 
     @Override
     public void informOfResult(final Player winner) {
         if (winner == null) {
             out.println("draw");
-        } else if (winner.equals(this)) {
-            out.println("You win!");
         } else {
-            out.println("You loose!");
+            out.println(winner + " wins!");
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }
