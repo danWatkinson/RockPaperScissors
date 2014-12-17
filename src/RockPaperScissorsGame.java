@@ -1,3 +1,7 @@
+import selection.InvalidSelection;
+import selection.Selection;
+import selection.SelectionBuilder;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -40,69 +44,4 @@ public class RockPaperScissorsGame {
         return selection;
     }
 
-    private class SelectionBuilder {
-        public Selection parse(final String input) {
-            if ("Rock".equals(input)) {
-                return new Rock();
-            } else if ("Paper".equals(input)) {
-                return new Paper();
-            } else if ("Scissors".equals(input)) {
-                return new Scissors();
-            } else {
-                return new InvalidSelection();
-            }
-        }
-    }
-
-    private interface Selection {
-        public abstract boolean isValid();
-    }
-
-    private class Rock implements Selection {
-        @Override
-        public boolean isValid() {
-            return true;
-        }
-
-        @Override
-        public String toString() {
-            return "Rock";
-        }
-    }
-
-    private class Paper implements Selection {
-        @Override
-        public boolean isValid() {
-            return true;
-        }
-
-        @Override
-        public String toString() {
-            return "Paper";
-        }
-    }
-
-    private class Scissors implements Selection {
-        @Override
-        public boolean isValid() {
-            return true;
-        }
-
-        @Override
-        public String toString() {
-            return "Scissors";
-        }
-    }
-
-    private class InvalidSelection implements Selection {
-        @Override
-        public boolean isValid() {
-            return false;
-        }
-
-        @Override
-        public String toString() {
-            return "Invalid Selection";
-        }
-    }
 }
