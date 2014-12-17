@@ -44,7 +44,11 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public void informOfResult() {
-        out.println("You win!");
+    public void informOfResult(final boolean winner) {
+        if (winner) {
+            out.println("You win!");
+        } else {
+            out.println("You loose!");
+        }
     }
 }

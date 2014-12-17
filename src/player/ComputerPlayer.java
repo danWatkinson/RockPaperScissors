@@ -14,7 +14,7 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public void informOfResult() {
+    public void informOfResult(final boolean winner) {
         //dummy
     }
 }

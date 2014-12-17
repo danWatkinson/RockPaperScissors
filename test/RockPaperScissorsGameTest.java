@@ -156,6 +156,21 @@ public class RockPaperScissorsGameTest {
         );
     }
 
+    @Test
+    public void scissorsLooseToRock() throws IOException {
+        prepareToChoose("Scissors");
+        when(mockComputerPlayer.makeSelection()).thenReturn(new Rock());
+
+        game.start();
+
+        expectOutput(
+                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "You selected Scissors",
+                "The computer selected Rock",
+                "You loose!"
+        );
+    }
+
     private void prepareToChoose(final String... choices) throws IOException {
         OngoingStubbing<String> whenInputRead = when(mockSystemIn.readLine());
         for(String choice : choices) {
