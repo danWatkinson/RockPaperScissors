@@ -9,9 +9,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by Dan on 17/12/2014.
- */
 public class RockPaperScissorsGameTest {
 
     PrintStream mockConsole;

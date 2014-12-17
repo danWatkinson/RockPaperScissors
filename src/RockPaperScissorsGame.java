@@ -3,9 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 
-/**
- * Created by Dan on 17/12/2014.
- */
 public class RockPaperScissorsGame {
     private final BufferedReader in;
     private final PrintStream out;
