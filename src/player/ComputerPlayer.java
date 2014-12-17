@@ -12,4 +12,9 @@ public class ComputerPlayer implements Player {
     public void informOfOpponentsSelection(final Selection opponentsSelection) {
         //dummy
     }
+
+    @Override
+    public void informOfResult() {
+        //dummy
+    }
 }

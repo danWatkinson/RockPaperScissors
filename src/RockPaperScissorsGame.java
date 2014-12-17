@@ -29,6 +29,7 @@ public class RockPaperScissorsGame {
         player1.makeSelection();
         Selection player2Selection = player2.makeSelection();
         player1.informOfOpponentsSelection(player2Selection);
+        player1.informOfResult();
     }
 
 }

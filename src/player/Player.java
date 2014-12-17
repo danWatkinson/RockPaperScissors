@@ -4,6 +4,6 @@ import selection.Selection;
 
 public interface Player {
     public Selection makeSelection();
-
-    public void informOfOpponentsSelection(Selection player2Selection);
+    public void informOfOpponentsSelection(Selection opponentsSelection);
+    public void informOfResult();
 }

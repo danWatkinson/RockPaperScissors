@@ -42,4 +42,9 @@ public class HumanPlayer implements Player {
     public void informOfOpponentsSelection(final Selection opponentsSelection) {
         out.println("The computer selected " + opponentsSelection);
     }
+
+    @Override
+    public void informOfResult() {
+        out.println("You win!");
+    }
 }

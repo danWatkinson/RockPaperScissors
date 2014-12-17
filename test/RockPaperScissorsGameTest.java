@@ -8,6 +8,8 @@ import player.ComputerPlayer;
 import player.HumanPlayer;
 import player.Player;
 import selection.Paper;
+import selection.Rock;
+import selection.Scissors;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -136,6 +138,21 @@ public class RockPaperScissorsGameTest {
                 "Please select 'Rock', 'Paper', or 'Scissors'",
                 "You selected Rock",
                 "The computer selected Paper"
+        );
+    }
+
+    @Test
+    public void rockBeatsScissors() throws IOException {
+        prepareToChoose("Rock");
+        when(mockComputerPlayer.makeSelection()).thenReturn(new Scissors());
+
+        game.start();
+
+        expectOutput(
+                "Please select 'Rock', 'Paper', or 'Scissors'",
+                "You selected Rock",
+                "The computer selected Scissors",
+                "You win!"
         );
     }
 
