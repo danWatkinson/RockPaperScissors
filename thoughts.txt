@@ -37,3 +37,5 @@ Be interesting to see how that stands up to the bit where I have to test randomn
    Worth breaking out some kind of Observer interface?
 3. //TODO refactor the actual Game code; use the fact that we've got a list of things that we want to inform about each event, rather than paste together the bits that work...
 4. something in the back of my mind tells me that I don't need to have a 'builder' for my Selection enum, isn't there some cheap opposite of toString for enums?? google it..
+5. lots of dummy code in ComputerPlayer; should Player be an abstract class that deals with dummying stuff out for us?
+6. HumanPlayer wants breaking out a bit, or maybe just renaming - see what it looks like with fresh eyes.
