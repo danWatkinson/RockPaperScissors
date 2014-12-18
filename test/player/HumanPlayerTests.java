@@ -140,6 +140,13 @@ public class HumanPlayerTests {
         expectOutput("opponent wins!");
     }
 
+    @Test(expected = RuntimeException.class)
+    public void itBlowsUpIfItCantReadFromInput() throws IOException {
+        when(in.readLine()).thenThrow(new IOException());
+
+        player.makeSelection();
+    }
+
     private void prepareToChoose(final String... choices) throws IOException {
         OngoingStubbing<String> whenInputRead = when(in.readLine());
         for(String choice : choices) {
