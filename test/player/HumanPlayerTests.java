@@ -36,7 +36,6 @@ public class HumanPlayerTests {
 
     @Test
     public void itIsCreatedWithANameAnInputSourceAndAnOutput() {
-
         assertEquals(name, player.toString());
         assertEquals(in, player.getIn());
         assertEquals(out, player.getOut());
@@ -48,7 +47,7 @@ public class HumanPlayerTests {
 
         player.makeSelection();
 
-        verify(out).println("Player 1, please select 'Rock', 'Paper', or 'Scissors'");
+        expectOutput("Player 1, please select 'Rock', 'Paper', or 'Scissors'");
 
     }
 

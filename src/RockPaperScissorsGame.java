@@ -9,13 +9,13 @@ import java.io.InputStreamReader;
 public class RockPaperScissorsGame {
     private Player player1;
     private Player player2;
-    private final RulesEngine rulesEngine;
     private final Player observer;
+    private final RulesEngine rulesEngine;
 
     public static void main(String[] args) {
         Player player1;
         Player observer;
-        if (args.length >0 && "watch".equals(args[0])) {
+        if (args.length > 0 && "watch".equals(args[0])) {
             player1 = new ComputerPlayer("Player 1");
             observer = new HumanPlayer("", new BufferedReader(new InputStreamReader(System.in)), System.out);
         } else {
@@ -28,26 +28,27 @@ public class RockPaperScissorsGame {
     }
 
     public RockPaperScissorsGame(final Player player1, final Player player2) {
-        this(player1, player2, new ComputerPlayer(""));
+        this(player1, player2, new ComputerPlayer(""), new RulesEngine());
     }
 
     public RockPaperScissorsGame(final Player player1, final Player player2, final Player observer) {
+        this(player1, player2, observer, new RulesEngine());
+    }
+
+    public RockPaperScissorsGame(final Player player1, final Player player2, final RulesEngine rulesEngine) {
+        this(player1, player2, new ComputerPlayer("observer"), rulesEngine);
+    }
+
+    public RockPaperScissorsGame(final Player player1, final Player player2, final Player observer, final RulesEngine rulesEngine) {
         this.player1 = player1;
         this.player2 = player2;
         this.observer = observer;
-        this.rulesEngine = new RulesEngine();
-    }
-
-    public RockPaperScissorsGame(final Player player1, final Player player2, final RulesEngine mockRulesEngine) {
-        this.player1 = player1;
-        this.player2 = player2;
-        this.rulesEngine = mockRulesEngine;
-        this.observer = new ComputerPlayer("");
+        this.rulesEngine = rulesEngine;
     }
 
     public void start() {
         Player winner = null;
-        while(winner == null) {
+        while (winner == null) {
             Selection player1Selection = player1.makeSelection();
             Selection player2Selection = player2.makeSelection();
             player1.informOfOpponentsSelection(player2, player2Selection);

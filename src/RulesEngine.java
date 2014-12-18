@@ -7,8 +7,8 @@ public class RulesEngine {
             return null;
         }
 
-        if (player1Selection == Selection.Rock     && player2Selection == Selection.Paper
-                || player1Selection == Selection.Paper    && player2Selection == Selection.Scissors
+        if (player1Selection == Selection.Rock && player2Selection == Selection.Paper
+                || player1Selection == Selection.Paper && player2Selection == Selection.Scissors
                 || player1Selection == Selection.Scissors && player2Selection == Selection.Rock) {
 
             return player2;
