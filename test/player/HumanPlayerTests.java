@@ -131,6 +131,15 @@ public class HumanPlayerTests {
         expectOutput("opponent selected Paper");
     }
 
+    @Test
+    public void echoesResultIntoOurOutput() throws IOException {
+        Player opponent = new ComputerPlayer("opponent");
+
+        player.informOfResult(opponent);
+
+        expectOutput("opponent wins!");
+    }
+
     private void prepareToChoose(final String... choices) throws IOException {
         OngoingStubbing<String> whenInputRead = when(in.readLine());
         for(String choice : choices) {
