@@ -9,7 +9,6 @@ import java.io.PrintStream;
 
 public class HumanPlayer extends Player {
 
-    private String name;
     private final BufferedReader in;
     private final PrintStream out;
 
