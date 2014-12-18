@@ -10,6 +10,7 @@ import java.io.PrintStream;
 public class HumanPlayer extends Player {
 
     private final BufferedReader in;
+
     private final PrintStream out;
 
     public HumanPlayer(final String name, final BufferedReader in, final PrintStream out) {
@@ -52,4 +53,11 @@ public class HumanPlayer extends Player {
         }
     }
 
+    public PrintStream getOut() {
+        return out;
+    }
+
+    public BufferedReader getIn() {
+        return in;
+    }
 }

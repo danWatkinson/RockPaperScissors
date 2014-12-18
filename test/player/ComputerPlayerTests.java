@@ -8,7 +8,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class ComputerPlayerTest {
+public class ComputerPlayerTests {
     final String NAME = "aName";
 
     @Test
