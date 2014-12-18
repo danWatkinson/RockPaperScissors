@@ -13,7 +13,6 @@ public class ComputerPlayerTest {
 
     @Test
     public void itIsCreatedWithAName() {
-
         ComputerPlayer computerPlayer = new ComputerPlayer(NAME);
 
         assertEquals(NAME, computerPlayer.toString());
@@ -31,28 +30,28 @@ public class ComputerPlayerTest {
 
     @Test
     public void maps0ToRock() {
-        RandomNumberGenerator rng = mock(RandomNumberGenerator.class);
-        when(rng.intBetween(0,2)).thenReturn(0);
-        ComputerPlayer computerPlayer = new ComputerPlayer(NAME, rng);
+        ComputerPlayer computerPlayer = new ComputerPlayer(NAME, aRandomNumberGeneratorPrimedWith(0));
 
         assertEquals(Selection.Rock, computerPlayer.makeSelection());
     }
 
     @Test
     public void maps1ToPaper() {
-        RandomNumberGenerator rng = mock(RandomNumberGenerator.class);
-        when(rng.intBetween(0,2)).thenReturn(1);
-        ComputerPlayer computerPlayer = new ComputerPlayer(NAME, rng);
+        ComputerPlayer computerPlayer = new ComputerPlayer(NAME, aRandomNumberGeneratorPrimedWith(1));
 
         assertEquals(Selection.Paper, computerPlayer.makeSelection());
     }
 
     @Test
     public void maps2ToScissors() {
-        RandomNumberGenerator rng = mock(RandomNumberGenerator.class);
-        when(rng.intBetween(0,2)).thenReturn(2);
-        ComputerPlayer computerPlayer = new ComputerPlayer(NAME, rng);
+        ComputerPlayer computerPlayer = new ComputerPlayer(NAME, aRandomNumberGeneratorPrimedWith(2));
 
         assertEquals(Selection.Scissors, computerPlayer.makeSelection());
+    }
+
+    private RandomNumberGenerator aRandomNumberGeneratorPrimedWith(int primedRandomNumber) {
+        RandomNumberGenerator rng = mock(RandomNumberGenerator.class);
+        when(rng.intBetween(0,2)).thenReturn(primedRandomNumber);
+        return rng;
     }
 }
