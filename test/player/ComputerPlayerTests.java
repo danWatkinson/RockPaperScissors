@@ -49,6 +49,13 @@ public class ComputerPlayerTests {
         assertEquals(Selection.Scissors, computerPlayer.makeSelection());
     }
 
+    @Test
+    public void mapsAnythingWeirdToOther() {
+        ComputerPlayer computerPlayer = new ComputerPlayer(NAME, aRandomNumberGeneratorPrimedWith(69));
+
+        assertEquals(Selection.Other, computerPlayer.makeSelection());
+    }
+
     private RandomNumberGenerator aRandomNumberGeneratorPrimedWith(int primedRandomNumber) {
         RandomNumberGenerator rng = mock(RandomNumberGenerator.class);
         when(rng.intBetween(0,2)).thenReturn(primedRandomNumber);

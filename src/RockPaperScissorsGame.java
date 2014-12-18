@@ -13,22 +13,24 @@ public class RockPaperScissorsGame {
     private final RulesEngine rulesEngine;
 
     public static void main(String[] args) {
-        Player player1;
-        Player observer;
-        if (args.length > 0 && "watch".equals(args[0])) {
-            player1 = new ComputerPlayer("Player 1");
-            observer = new HumanPlayer("", new BufferedReader(new InputStreamReader(System.in)), System.out);
-        } else {
-            player1 = new HumanPlayer("Player 1", new BufferedReader(new InputStreamReader(System.in)), System.out);
-            observer = new ComputerPlayer("");
-        }
-        Player player2 = new ComputerPlayer("Player 2");
+        RockPaperScissorsGame game;
 
-        new RockPaperScissorsGame(player1, player2, observer).start();
+        if (args.length > 0 && "watch".equals(args[0])) {
+            Player player1 = new ComputerPlayer("Computer Player 1");
+            Player player2 = new ComputerPlayer("Computer Player 2");
+            Player observer = new HumanPlayer("observer", new BufferedReader(new InputStreamReader(System.in)), System.out);
+            game = new RockPaperScissorsGame(player1, player2, observer);
+        } else {
+            Player player1 = new HumanPlayer("Player 1", new BufferedReader(new InputStreamReader(System.in)), System.out);
+            Player player2 = new ComputerPlayer("Computer Player 2");
+            game = new RockPaperScissorsGame(player1, player2);
+        }
+
+        game.start();
     }
 
     public RockPaperScissorsGame(final Player player1, final Player player2) {
-        this(player1, player2, new ComputerPlayer(""), new RulesEngine());
+        this(player1, player2, new ComputerPlayer("dummyObserver"), new RulesEngine());
     }
 
     public RockPaperScissorsGame(final Player player1, final Player player2, final Player observer) {

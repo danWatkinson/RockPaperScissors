@@ -140,6 +140,13 @@ public class HumanPlayerTests {
         expectOutput("opponent wins!");
     }
 
+    @Test
+    public void echoesResultIntoOurOutput_draw() throws IOException {
+        player.informOfResult(null);
+
+        expectOutput("draw");
+    }
+
     @Test(expected = RuntimeException.class)
     public void itBlowsUpIfItCantReadFromInput() throws IOException {
         when(in.readLine()).thenThrow(new IOException());
