@@ -7,14 +7,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
-public class HumanPlayer implements Player {
+public class HumanPlayer extends Player {
 
     private String name;
     private final BufferedReader in;
     private final PrintStream out;
 
     public HumanPlayer(final String name, final BufferedReader in, final PrintStream out) {
-        this.name = name;
+        super(name);
         this.in = in;
         this.out = out;
     }
@@ -53,8 +53,4 @@ public class HumanPlayer implements Player {
         }
     }
 
-    @Override
-    public String toString() {
-        return this.name;
-    }
 }
